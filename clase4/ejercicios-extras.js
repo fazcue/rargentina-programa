@@ -297,7 +297,7 @@ function rotarArrayAlaIzquierdaUnaPosicion(array) {
 
     //Añado elementos a nueva array desde el indice 1 (2do elemento) (solo si contiene mas de 1 elemento)
     if (array.length > 1) {
-        for (i=1; array.length > i; i++) {
+        for (let i=1; array.length > i; i++) {
             array_modificada.push(array[i]);
         }
     }
@@ -326,3 +326,180 @@ function rotarArrayAlaIzqUnaPosicion(array) {
 }
 
 console.log(rotarArrayAlaIzqUnaPosicion(array_a_rotar));
+
+//Desafío de programación #21: Rotar un array a la derecha una posición
+//Ejemplo: [2,3,4,1] debería quedar como [1,2,3,4]
+
+let array_a_rotar_derecha = [2,3,4,1];
+
+//Solucion utilizando pop (toma el ultimo elemento, modificando su longitud)
+function rotarArrayAlaDerechaUnaPosicion(array) {
+    let array_modificada = [];
+    let ultimo_elemento = array.pop();
+    
+    array_modificada.push(ultimo_elemento);
+
+    for (let i=0; array.length > i; i++) {
+        array_modificada.push(array[i]);
+    }
+
+    return array_modificada;
+}
+
+console.log(rotarArrayAlaDerechaUnaPosicion(array_a_rotar_derecha));
+
+//Solucion utilizando pop y unshift (agrega uno o más elementos al inicio del array, y devuelve la nueva longitud del array)
+
+function rotarArrayAlaDerUnaPosicion(array) {
+    let ultimo_elemento = array.pop();
+
+    array.unshift(ultimo_elemento);
+
+    return array;
+}
+
+let array_a_rotar_der = [2,3,4,1];
+console.log(rotarArrayAlaDerUnaPosicion(array_a_rotar_der));
+
+//Desafío de programación #22: Invertir un array
+//Ejemplo: [1,2,3,4] debería quedar como [4,3,2,1]
+
+//Solucion inicial
+function invertirArray(array) {
+    let array_modificada = [];
+
+    for (let i = array.length - 1; i >= 0; i--) {
+        array_modificada.push(array[i]);
+    }
+
+    return array_modificada;
+}
+
+let array_a_invertir = [1,2,3,4];
+console.log(invertirArray(array_a_invertir));
+
+//Solucion utilizando reverse
+function invertirArrayConReverse(array) {
+    let array_modificada = array.reverse();
+
+    return array_modificada;
+}
+
+let array_a_invertir_reverse = [1,2,3,4];
+console.log(invertirArray(array_a_invertir_reverse));
+
+//Desafío de programación #23: Invertir una cadena de caracteres
+//Ejemplo: "bienvenido" debería quedar como "odinevneib"
+
+function invertirString(string) {
+    let string_invertido = '';
+
+    for (let i=string.length-1; i >= 0; i--) {
+        string_invertido += string[i];
+    }
+
+    return string_invertido;
+}
+
+let string_a_invertir = 'sodinevneiB';
+console.log(invertirString(string_a_invertir));
+
+//Desafío de programación #24: Crear una función que reciba dos dos arrays (arreglos) como argumentos y returne el resultado en un nuevo arreglo
+//Ejemplo: [1,2,3] con ["a","b","c"] debería quedar como [1,2,3,"a","b","c"]
+
+//Solucion inicial
+function unirArrays(array1, array2) {
+    let array_unido = [];
+
+    //uno cada elemento del array1 a nuevo array
+    for (let i=0; array1.length > i; i++) {
+        array_unido.push(array1[i]);
+    }
+
+    //repito para array2
+    for (let i=0; array2.length > i; i++) {
+        array_unido.push(array2[i]);
+    }
+
+    return array_unido;
+}
+
+let array_a_unir_1 = [1,2,3];
+let array_a_unir_2 = ['a', 'b', 'c'];
+
+console.log(unirArrays(array_a_unir_1, array_a_unir_2));
+
+//Solucion utilizando concat
+function unirArraysConConcat(array1, array2) {
+    let array_unido = array1.concat(array2);
+
+    return array_unido;
+}
+
+console.log(unirArraysConConcat(array_a_unir_1, array_a_unir_2));
+
+//Desafío de programación #25: Crear una función que reciba dos arrays (arreglos) de números como argumentos y retorne un array con números que estén en uno u otro array, pero NO en ambos.
+//Nota: Esto se llama "diferencia simétrica" entre conjuntos
+
+//Solucion inicial
+function diferenciaSimetrica(array1, array2) {
+    let esDiferente;
+    let diferencia = [];
+
+    for (let el of array1) {
+        esDiferente = true;
+        
+        for (let i=0; array2.length > i; i++) {
+            if (el === array2[i]) {
+                esDiferente = false;
+            }
+        }
+
+        if (esDiferente === true) {
+            diferencia.push(el)
+        }
+
+    }
+
+    for (let el of array2) {
+        esDiferente = true;
+
+        for (let i=0; array1.length > i; i++) {
+            if (el === array1[i]) {
+                esDiferente = false;
+            }
+        }
+
+        if (esDiferente === true) {
+            diferencia.push(el);
+        }
+    }
+
+    return diferencia;
+}
+
+let diferencia1 = [1,2,3];
+let diferencia2 = [4];
+console.log(diferenciaSimetrica(diferencia1, diferencia2));
+
+//Solucion utilizando includes (determina si una matriz incluye un determinado elemento, devuelve true o false según corresponda)
+
+function diferenciaSimetricaIncludes(array1, array2) {
+    let diferencia = [];
+
+    for (let el of array1) {
+        if (array2.includes(el) === false) {
+            diferencia.push(el);
+        }
+    }
+
+    for (let el of array2) {
+        if (array1.includes(el) === false) {
+            diferencia.push(el);
+        }
+    }
+
+    return diferencia;
+}
+
+console.log(diferenciaSimetricaIncludes(diferencia1, diferencia2));
