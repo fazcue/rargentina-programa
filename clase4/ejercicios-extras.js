@@ -479,11 +479,10 @@ function diferenciaSimetrica(array1, array2) {
 }
 
 let diferencia1 = [1,2,3];
-let diferencia2 = [4];
+let diferencia2 = [1,4];
 console.log(diferenciaSimetrica(diferencia1, diferencia2));
 
 //Solucion utilizando includes (determina si una matriz incluye un determinado elemento, devuelve true o false según corresponda)
-
 function diferenciaSimetricaIncludes(array1, array2) {
     let diferencia = [];
 
@@ -503,3 +502,116 @@ function diferenciaSimetricaIncludes(array1, array2) {
 }
 
 console.log(diferenciaSimetricaIncludes(diferencia1, diferencia2));
+
+//Desafío de programación #26: Crear una función que reciba dos arrays de números y retorne un nuevo array con los elementos que se encuentren en el primer array, pero no en el segundo
+//Nota; Esto se llama "resta" entre conjuntos
+
+function restaEntreConjunto(array1, array2) {
+    let diferencia = [];
+
+    for (let el of array1) {
+        if (array2.includes(el) === false) {
+            diferencia.push(el);
+        }
+    }
+
+    return diferencia;
+}
+
+console.log(restaEntreConjunto(diferencia1, diferencia2));
+
+//Desafío de programación #27: Crear una función que reciba un array de números como argumento y retorne un array con los elementos distintos
+//Ejemplo: [1,2,3,4,5,4,3,2,1,0] debería retornar [1,2,3,4,5,0]
+
+//Solucion usando splice (cambia el contenido de un array eliminando elementos existentes y/o agregando nuevos elementos | indice, cantidad, elementos(opcional))
+function elementosUnicosArray(array) {
+    let array_elementos_unicos = array;
+
+    for (let el of array) {
+        let contador = 0;
+
+        for (let i=0; array.length > i; i++) {
+            if (el === array[i]) {
+                contador += 1;
+            }
+
+            
+            if (contador > 1) {
+                array_elementos_unicos.splice(i, 1);
+            }
+        }
+
+    }
+
+    return array_elementos_unicos;
+}
+
+let array_elementos_repetidos = [1,2,3,4,5,4,3,2,1,0];
+console.log(elementosUnicosArray(array_elementos_repetidos));
+
+//Desafío de programación #28: Calcular la suma de los primeros 100 numeros primos
+
+//Solucion inicial
+function first100PrimeNumbersSum() {
+    let contador = 0;
+    let suma = 0;
+
+    for (let i=2; contador < 100; i++) {
+        let es_primo = true;
+        for (let x=2; i > x; x++) {
+            if (i % x === 0) {
+                es_primo = false;
+            }
+        }
+        if (es_primo === true) {
+            suma += i;
+            contador++;
+        }
+    }
+
+    return suma;
+}
+
+console.log(first100PrimeNumbersSum());
+
+//Solucion llamando a una funcion que verifique si es primo o no
+function sumaPrimeros100numerosPrimos() {
+    let contador = 0;
+    let suma = 0;
+
+    for (let i=2; contador < 100; i++) {
+        if (primoOno(i) === true) {
+            contador++;
+            suma += i;
+        }
+    }
+
+    return suma;
+}
+
+console.log(sumaPrimeros100numerosPrimos());
+
+//Desafío de programación #29: Print the distance between the first 100 prime numbers
+function distanciaEntreNumerosPrimos() {
+    let numero_actual = 0;
+    let numero_anterior;
+    let contador = 0;
+    let distancia = 0;
+
+    for (let i=2; contador < 100; i++) {
+        let esprimo = true;
+        for (x=2; x < i; x++) {
+            if (i % x === 0) {
+                esprimo = false;
+            }
+        }
+        if (esprimo === true) {
+            contador++;
+            numero_anterior = numero_actual;
+            numero_actual = i;
+            distancia = numero_actual - numero_anterior;
+            console.log('La distancia entre ' + numero_actual + ' y ' + numero_anterior + ' es: ' + distancia);
+        }
+    }
+}
+distanciaEntreNumerosPrimos();
