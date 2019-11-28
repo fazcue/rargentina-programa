@@ -5,19 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Ingresos de integrantes familiares</title>
+    <link rel="stylesheet" href="tarea2-main.css">
 </head>
 <body>
     
     <h1>Ingresos de integrantes familiares</h1>
 
-    <div id="datos-salarios">
-        <p id="mayor-salario" class="oculto"></p>
-        <p id="menor-salario" class="oculto"></p>
-        <p id="promedio-anual-salario" class="oculto"></p>
-        <p id="promedio-mensual-salario" class="oculto"></p>
+    <form id="ingresos-familiares">
+
+        <div id="agregar-eliminar-integrantes">
+            <input type="number" id="cantidad-integrantes" placeholder="Ingresar # integrantes" />
+            <input type="button" id="agregar-integrantes" value="Agregar integrantes" />
+            <input type="button" id="eliminar-integrantes" value="Eliminar integrantes" /><br>
+        </div>
+
+        <div id="integrantes"></div>
+
+        <div id="realizar-calculos" class="oculto">
+            <input type="submit" id="calcular-salarios" value="Calcular" />
+            <input type="reset" id="resetear-salarios" value="Limpiar" />
+        </div>
+
+    </form>
+
+    <div id="datos-salarios" class="oculto">
+        <p id="mayor-salario">El mayor salario es igual a <strong></strong></p>
+        <p id="menor-salario">El menor salario es igual a <strong></strong></p>
+        <p id="promedio-anual-salario">El promedio anual es igual a <strong></strong></p>
+        <p id="promedio-mensual-salario">El promedio mensual es igual a <strong></strong></p>
     </div>
 
-    <script type="text/javascript" src="tarea1-calculos.js"></script>
-    <script type="text/javascript" src="tarea1-main.js"></script>
+    <script type="text/javascript" src="tarea2-calculos.js"></script>
+    <script type="text/javascript" src="tarea2-main.js"></script>
 </body>
 </html>
